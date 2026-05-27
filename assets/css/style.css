@@ -1,0 +1,64 @@
+/* ═══════════════════════════════════════════════════════
+   SIG WISATA MEDAN — style.css v3.0 (Tailwind Revamp)
+   This file only contains specific overrides not covered by Tailwind CSS.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── CURSOR ─────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  body { cursor: none; }
+  .cursor-dot {
+    width: 8px; height: 8px; background: #f5b942; border-radius: 50%;
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s cubic-bezier(.34,1.56,.64,1), height 0.25s cubic-bezier(.34,1.56,.64,1), background 0.2s, transform 0.2s;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px; border: 1.5px solid rgba(200,144,26,.5); border-radius: 50%;
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s cubic-bezier(.34,1.56,.64,1), height 0.3s cubic-bezier(.34,1.56,.64,1), border-color 0.2s, transform 0.2s;
+  }
+}
+
+/* ── LOADER ─────────────────────────────────────────────── */
+.page-loader {
+  position: fixed; inset: 0; background: #0f2d17; z-index: 10000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  transition: opacity 0.7s cubic-bezier(.22,1,.36,1), visibility 0.7s;
+}
+.page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader-progress { width: 180px; height: 2px; background: rgba(255,255,255,.12); border-radius: 2px; overflow: hidden; }
+.loader-progress::after {
+  content: ''; display: block; height: 100%; width: 0; background: #f5b942;
+  animation: loadProg 1.1s cubic-bezier(.22,1,.36,1) 0.2s forwards;
+}
+@keyframes loadProg { to { width: 100%; } }
+
+/* ── CUSTOM ANIMATIONS ──────────────────────────────────── */
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+.animate-blob { animation: blob 7s infinite; }
+.animation-delay-2000 { animation-delay: 2s; }
+
+/* ── LEAFLET OVERRIDES ──────────────────────────────────── */
+.leaflet-popup-content-wrapper { 
+  border-radius: 16px !important; 
+  border: none !important; 
+  box-shadow: 0 12px 40px rgba(0,0,0,.22) !important; 
+  padding: 0 !important; 
+  overflow: hidden; 
+}
+.leaflet-popup-content { margin: 0 !important; }
+.popup-inner { padding: 1.1rem; font-family: 'Inter', sans-serif; min-width: 210px; }
+.popup-name { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: #0c1a10; margin-bottom: 0.25rem; letter-spacing: -0.01em; }
+.popup-sub { font-size: 0.73rem; color: #5c6e61; margin-bottom: 0.6rem; }
+.popup-btn { 
+  display: block; width: 100%; text-align: center; background: #16a34a; color: white; 
+  padding: 0.5rem; border-radius: 8px; font-size: 0.78rem; font-weight: 700; 
+  transition: background 0.2s; border: none; cursor: pointer;
+}
+.popup-btn:hover { background: #15803d; color: white; }
